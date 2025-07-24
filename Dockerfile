@@ -1,4 +1,5 @@
-FROM python:3.10.8-slim-buster
+FROM python:3.10.8-slim-bookworm
+
 RUN apt-get update -y && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends gcc libffi-dev ffmpeg aria2 python3-pip \
     && apt-get clean \
