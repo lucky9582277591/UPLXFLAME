@@ -530,35 +530,31 @@ async def upload(bot: Client, m: Message):
     
 
     await editable.edit("📛 𝗘𝗻𝘁𝗲𝗿 𝗬𝗼𝘂𝗿 𝗡𝗮𝗺𝗲 📛\n\n🐥 𝗦𝗲𝗻𝗱 `1` 𝗙𝗼𝗿 𝗨𝘀𝗲 𝗗𝗲𝗳𝗮𝘂𝗹𝘁 🐥")
-    input3: Message = await bot.listen(editable.chat.id)
-    raw_text3 = input3.text
-    await input3.delete(True)
-    # Default credit message with link
-    credit = "️[𝗧𝘂𝘀𝗵𝗮𝗿](https://t.me/Tushar0125)"
-    if raw_text3 == '1':
-        CR = '[𝗧𝘂𝘀𝗵𝗮𝗿](https://t.me/Tushar0125)'
-    elif raw_text3:
-        try:
-            text, link = raw_text3.split(',')
-            CR = f'[{text.strip()}]({link.strip()})'
-        except ValueError:
-            CR = raw_text3  # In case the input is not in the expected format, use the raw text
-    else:
-        CR = credit
-    #highlighter  = f"️ ⁪⁬⁮⁮⁮"
-    #if raw_text3 == 'Robin':
-        #MR = highlighter 
-    #else:
-        #MR = raw_text3
-   
-    await editable.edit("**𝗘𝗻𝘁𝗲𝗿 𝗣𝘄 𝗧𝗼𝗸𝗲𝗻 𝗙𝗼𝗿 𝗣𝘄 𝗨𝗽𝗹𝗼𝗮𝗱𝗶𝗻𝗴 𝗼𝗿 𝗦𝗲𝗻𝗱 `3` 𝗙𝗼𝗿 𝗢𝘁𝗵𝗲𝗿𝘀**")
-    input4: Message = await bot.listen(editable.chat.id)
-    raw_text4 = input4.text
-    await input4.delete(True)
-    if raw_text4 == 3:
-        MR = token
-    else:
-        MR = raw_text4
+input3: Message = await bot.listen(editable.chat.id)
+raw_text3 = input3.text
+await input3.delete(True)
+
+credit = "️[𝗧𝘂𝘀𝗵𝗮𝗿](https://t.me/Tushar0125)"
+if raw_text3 == '1':
+    CR = '[𝗧𝘂𝘀𝗵𝗮𝗿](https://t.me/Tushar0125)'
+elif raw_text3:
+    try:
+        text, link = raw_text3.split(',')
+        CR = f'[{text.strip()}]({link.strip()})'
+    except ValueError:
+        CR = raw_text3
+else:
+    CR = credit
+
+await editable.edit("**𝗘𝗻𝘁𝗲𝗿 𝗣𝘄 𝗧𝗼𝗸𝗲𝗻 𝗙𝗼𝗿 𝗣𝘄 𝗨𝗽𝗹𝗼𝗮𝗱𝗶𝗻𝗴 𝗼𝗿 𝗦𝗲𝗻𝗱 `3` 𝗙𝗼𝗿 𝗢𝘁𝗵𝗲𝗿𝘀**")
+input4: Message = await bot.listen(editable.chat.id)
+raw_text4 = input4.text
+await input4.delete(True)
+
+if raw_text4 == '3':   # Compare as string here!
+    MR = token
+else:
+    MR = raw_text4
 
     
 
@@ -573,7 +569,7 @@ async def upload(bot: Client, m: Message):
         #getstatusoutput(f"wget '{thumb}' -O 'thumb.jpg'")
         #thumb = "thumb.jpg"
     else:
-        thumb == "no"
+        thumb = "no"
     failed_count =0
     if len(links) == 1:
         count = 1
