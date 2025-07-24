@@ -558,18 +558,18 @@ else:
 
     
 
-      await editable.edit(
-        "𝗡𝗼𝘄 𝗦𝗲𝗻𝗱 𝗧𝗵𝗲 𝗧𝗵𝘂𝗺𝗯 𝗨𝗿𝗹 𝗘𝗴 » https://graph.org/file/13a89d77002442255efad-989ac290c1b3f13b44.jpg\n\n"
-        "𝗢𝗿 𝗜𝗳 𝗗𝗼𝗻'𝘁 𝗪𝗮𝗻𝘁 𝗧𝗵𝘂𝗺𝗯𝗻𝗮𝗶𝗹 𝗦𝗲𝗻𝗱 = 𝗻𝗼"
-    )
+      await editable.edit(f"**Send the Video Thumb URL or send /d**")
+    try:
+        input6: Message = await bot.listen(editable.chat.id, timeout=20)
+        raw_text6 = input6.text
+        await input6.delete(True)
+    except asyncio.TimeoutError:
+        raw_text6 = '0'
 
-    input6 = await bot.listen(editable.chat.id)
-    raw_text6 = input6.text
-    await input6.delete(True)
-    await editable.delete()
-
-    if raw_text6.lower() == "no":
-        thumb = "no"
+    if raw_text6.startswith("http://") or raw_text6.startswith("https://"):
+        # If a URL is provided, download thumbnail from the URL
+        getstatusoutput(f"wget '{raw_text6}' -O 'thumb.jpg'")
+        thumb = "thumb.jpg"
     else:
         thumb = raw_text6
 
